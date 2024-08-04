@@ -24,7 +24,6 @@ set FirstName = Upper(left(FirstName,1))+Lower(substring(FirstName,2, len(FirstN
 
 Select * from Customer 
 
-
 -- Find out the Employees which are not assigned to any dept and are on Bench
 select Count(*) from Customer
 where Department is Null           
@@ -56,8 +55,7 @@ HAVING COUNT(*) > 1;
 --Write a query that calculates 2 additional fields - Month of Joining and Year of Joining along with the columns of the Customer Table
 Select *, month(JoiningDate) as Month_Of_Joining, Year(JoiningDate) as Year_Of_Joining from Customer
 
---Write an optimal query to give the count of the employees where the name starts with - 'AS' 
---and which has 'SAP' in between of the name anywhere
+--Write an optimal query to give the count of the employees where the name starts with - 'AS' and which has 'SAP' in between of the name anywhere
 select  count(EID) from Customer
 
 select * from Customer                          --output as 46 employee data
@@ -68,14 +66,14 @@ where (FirstName LIKE 'AS%' or LastName LIKE 'AS%')
 select count(*) as CountOfEmployees from Customer
 where JoiningDate Between '2003-05-01 00:00:00.000' and '2009-06-30 00:00:00.000'
 
---Find all the records where the Lastname Or Email is Null and Replace it by ‘No record Found’ – Prefer Coalesce
+--Find all the records where the Lastname Or Email is Null and Replace it by â€˜No record Foundâ€™ â€“ Prefer Coalesce
 select * from customer
 where Lastname is null and Email is null
-------
+
 select *, COALESCE(Lastname, 'no record found') AS Lastname,COALESCE(Email, 'no record found') AS Email
 from Customer
 
---Write a query to find the number of Joining’s Year and Month wise and order them by lowest to highest numbers 
+--Write a query to find the number of Joiningâ€™s Year and Month wise and order them by lowest to highest numbers 
 select year(JoiningDate) as JOININGYEARS, Month(JoiningDate) as JOININGMONTH, count(*) as NO_OFJOINING
 from Customer
 group by year(JoiningDate), Month(JoiningDate) 
@@ -93,8 +91,7 @@ WHERE rn > 1;
 
 exec CTE_DuplicateRecords 
 
--- Write a query to find all the departments in a company , their average salary per employee in that dept and their total salary for 
---the employees falling under that dept
+-- Write a query to find all the departments in a company , their average salary per employee in that dept and their total salary for the employees falling under that dept
 
 select  EID, Department,  avg(Salary) as AVG_SALARY, Sum(Salary)  as TotalSalary
 from Customer
@@ -151,11 +148,3 @@ ROLLBACK TRANSACTION;
 
 -- Verify that the data is reverted
 SELECT * FROM Customer;
-
-
-
-
-
-
-
-
